@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/src/resources/static/styles_out.css
 
 ### STS ###
 .apt_generated
