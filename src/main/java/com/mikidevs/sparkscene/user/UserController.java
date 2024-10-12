@@ -1,8 +1,5 @@
 package com.mikidevs.sparkscene.user;
 
-import java.util.Map;
-
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
