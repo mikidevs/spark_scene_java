@@ -6,7 +6,7 @@
             <div class="bg-surface-100 p-5 rounded w-[30rem]">
                 <div class="font-bold text-4xl mb-5 mx-auto">Create an account</div>
                 <div class="mb-5 text-grey">
-                    Already have an account? <a class="spark-link" hx-get="/login" hx-target="#body">Log in</a>
+                    Already have an account? <a class="spark-link" hx-get="/login" hx-target="body">Log in</a>
                 </div>
                 <form class="flex flex-col gap-6 pb-5" th:object="${userRegistration}" th:hx-post="@{/users}" hx-target="#content" th:action="@{/users}" method="post">
                     <div class="relative">

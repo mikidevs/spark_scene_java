@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -19,16 +20,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(auths -> 
-                auths 
-                    .requestMatchers("/register", "/login", "/css/**", "/js/**").permitAll()
-                    .anyRequest().authenticated()
+            .csrf(CsrfConfigurer::disable)
+            .authorizeHttpRequests(authorise -> authorise
+                .requestMatchers("/", "/login", "register", "/*.js", "/*.css", "/*.ico").permitAll()
+                .anyRequest().authenticated()
             )
-            .formLogin(formLogin -> formLogin
+            .formLogin(form -> form
                 .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
             );
-        
+
         return http.build();
     }
 }

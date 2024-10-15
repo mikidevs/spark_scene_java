@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{shared/base.html}">
+    <div id="content" layout:fragment="content">
+        <div class="bg-ground h-screen flex justify-center items-center">
+            <div class="bg-surface-100 p-5 rounded w-[30rem]">
+                <div class="font-bold text-4xl mb-5 mx-auto">Login</div>
+                <div class="mb-5 text-grey">
+                    Don't yet have an account? <a class="spark-link" hx-get="/register" hx-target="body">Register</a>
+                </div>
+                <form class="flex flex-col gap-6 pb-5" th:hx-post="@{/login}" hx-target="#content" th:action="@{/login}" method="post">
+                    <div class="relative">
+                        <label for="email" class="block pb-2">Email</label>
+                        <input id="email" name="email" class="spark-input" placeholder="email@example.com" type="text" />
+                        <!-- <div th:errors="*{email}"></div> -->
+                    </div>
+                    <div class="relative">
+                        <label for="password" class="block pb-2">Password</label>
+                        <input id="password" name="password" class="spark-input" placeholder="•••••••••" type="password" />
+                    </div>
+                    <!-- <div th:if="${param.error}">
+                        <p style="color:red">Invalid email or password.</p>
+                    </div> -->
+                    <button class="spark-btn mt-3" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</html>
