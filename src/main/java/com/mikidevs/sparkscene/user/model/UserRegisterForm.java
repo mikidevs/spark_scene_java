@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 
 @FieldsMatch(firstField = "password", secondField = "confirmPassword", message = "Passwords must match")
 public record UserRegisterForm(
-
     @NotBlank(message = "User name is required")
     @Size(min = 4, message = "User name must be at least 4 characters long")
     String userName, 

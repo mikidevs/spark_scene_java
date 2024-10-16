@@ -7,6 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.BindingResult;
 
 public class FormUtil {
+
     public static Map<String, String> getErrorMap(BindingResult bindingResult) {
         return
         bindingResult.getFieldErrors().stream()
@@ -22,4 +23,5 @@ public class FormUtil {
                 entry -> entry.getValue().get(0)
             ));
     }
+
 }

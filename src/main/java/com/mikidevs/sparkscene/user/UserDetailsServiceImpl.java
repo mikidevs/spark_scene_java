@@ -6,14 +6,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
-
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     // Email is used as the user name
     @Override
@@ -23,9 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(email);
         }
         return User
-            .withUsername(user.email())
-            .password(user.password())
+            .withUsername(user.getEmail())
+            .password(user.getPassword())
             .authorities("ROLE_USER")
             .build();
     }
+
 }
