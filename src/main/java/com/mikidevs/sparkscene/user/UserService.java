@@ -2,7 +2,7 @@ package com.mikidevs.sparkscene.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.mikidevs.sparkscene.user.model.ApplicationUser;
+import com.mikidevs.sparkscene.user.model.User;
 import com.mikidevs.sparkscene.user.model.UserRegisterForm;
 
 public class UserService {
@@ -17,7 +17,7 @@ public class UserService {
 
     public void save(UserRegisterForm userForm) {
         var password = passwordEncoder.encode(userForm.password());
-        var appUser = ApplicationUser.fromForm(userForm, password);
+        var appUser = User.fromForm(userForm, password);
         userRepository.save(appUser);
     }
 }

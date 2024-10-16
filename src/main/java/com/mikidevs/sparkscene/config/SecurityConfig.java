@@ -12,6 +12,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    public static final String[] PUBLIC_ENDPOINTS = {
+        "/",
+        "/login",
+        "/register",
+        "/users/**",
+        "/*.js",
+        "/*.css",
+        "/*.ico"
+    };
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -22,7 +32,7 @@ public class SecurityConfig {
         http
             .csrf(CsrfConfigurer::disable)
             .authorizeHttpRequests(authorise -> authorise
-                .requestMatchers("/", "/login", "register", "/*.js", "/*.css", "/*.ico").permitAll()
+                .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
